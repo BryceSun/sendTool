@@ -44,7 +44,8 @@ func main() {
 		*host = c.Host
 	}
 	for _, q := range c.Requestes {
-		req, err := http.NewRequest("POST", strings.ReplaceAll(q.Path, "#host", *host), bytes.NewBufferString(q.Params))
+		log.Println(strings.ReplaceAll(q.Path, "#host", *host))
+		req, err := http.NewRequest(q.Method, strings.ReplaceAll(q.Path, "#host", *host), bytes.NewBufferString(q.Params))
 		if err != nil {
 			log.Println(err)
 		}
